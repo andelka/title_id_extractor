@@ -1,0 +1,19 @@
+<h1> Listing keywords </h1>
+
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Text</th>
+  </tr>
+
+  <% @keywords.each do |keyword| %>
+    <tr>
+      <td><%= keyword.id %>
+      <td><%= keyword.text %></td>
+      <td><%= link_to 'Show', keyword_path(keyword) %></td>
+      <td><%= link_to 'Edit', edit_keyword_path(keyword) %></td>
+    </tr>
+  <% end %>
+</table>
+
+<%= link_to 'New Keyword', new_keyword_path %>

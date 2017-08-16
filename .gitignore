@@ -24,3 +24,4 @@ config/database.yml
 
 .byebug_history
 config/secrets.yml
+config/initializers/rebay.rb

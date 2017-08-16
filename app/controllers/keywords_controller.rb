@@ -1,7 +1,15 @@
+require 'csv'
+
 class KeywordsController < ApplicationController
+  before_action :set_keyword, only: [:show, :edit, :update, :destroy]
 
   def index
     @keywords = Keyword.all
+
+    respond_to do |format|
+      format.html
+      format.csv { send_data Keyword.to_csv, filename: "keyword_list-#{Date.today}.csv" }
+    end
   end
 
   def show
@@ -20,23 +28,48 @@ class KeywordsController < ApplicationController
     @keyword = Keyword.new(keyword_params)
 
     if @keyword.save
-      redirect_to @keyword
+      format.html { redirect_to @keyword, notice: 'The keyword list was successfully created.' }
+      format.json { render :show, status: :created, location: @keyword }
+    #  redirect_to @keyword
     else
-      render 'new'
+      format.html { render :new }
+      format.json { render json: @keyword.errors, status: :unprocessable_entity }
+      # render 'new'
     end
   end
 
   def update
-    @keyword = Keyword.find(params[:id])
+  #  @keyword = Keyword.find(params[:id])
 
-    if @keyword.update(keyword_params)
-      redirect_to @keyword
-    else
-      render 'edit'
+    respond_to do |format|
+      if @keyword.update(keyword_params)
+        #redirect_to @keyword
+        format.html { redirect_to @keyword, notice: 'The keyword list was successfully updated.' }
+        format.json { render :show, status: :ok, location: @keyword }
+      else
+        #render 'edit'
+        format.html { render :edit }
+        format.json { render json: @keyword.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def destroy
+    #@keyword = Keyword.find(params[:id])
+    @keyword.destroy
+    respond_to do |format|
+      format.html { redirect_to keywords_url, notice: 'The keyword list was successfully destroyed.' }
+      format.json { head :no_content }
+      #redirect_to keywords_path
     end
   end
 
   private
+
+    def set_keyword
+     @keyword = Keyword.find(params[:id])
+    end
+
     def keyword_params
       params.require(:keyword).permit(:text)
     end

@@ -1,22 +1,22 @@
 <h1> Listing keywords </h1>
 
-<table>
+<table class="table table-hover">
   <tr>
-    <th>ID</th>
     <th>Text</th>
+    <th colspan="3"></th>
   </tr>
-
-  <% @keywords.each do |keyword| %>
-    <tr>
-      <td><%= keyword.id %>
-      <td><%= keyword.text %></td>
-      <td><%= link_to 'Show', keyword_path(keyword) %></td>
-      <td><%= link_to 'Edit', edit_keyword_path(keyword) %></td>
-      <td><%= link_to 'Destroy', keyword_path(keyword),
-        method: :delete,
-        data: { confirm: 'Are you sure?'} %></td>
-    </tr>
-  <% end %>
+  <tbody>
+    <% @keywords.each do |keyword| %>
+      <tr>
+        <td><%= keyword.text %></td>
+        <td><%= link_to 'Show', keyword_path(keyword) %></td>
+        <td><%= link_to 'Edit', edit_keyword_path(keyword) %></td>
+        <td><%= link_to 'Delete', keyword_path(keyword),
+          method: :delete,
+          data: { confirm: 'Are you sure?'} %></td>
+      </tr>
+    <% end %>
+  </body>
 </table>
 
 <%= link_to 'New Keyword', new_keyword_path %>

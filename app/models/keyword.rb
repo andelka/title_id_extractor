@@ -3,7 +3,7 @@ class Keyword < ApplicationRecord
 
   def self.to_csv
     CSV.generate do |csv|
-      csv << ["item_id", "item_title"]
+      csv << ["item_id", "item_title", "category_id", "category_name"]
       keywords = self.all
       keywords.each do |keyword|
         items = keyword.get_items
@@ -11,7 +11,9 @@ class Keyword < ApplicationRecord
         items.each do |item|
           item_id = item["itemId"]
           item_title = item["title"]
-          csv << [item_id, item_title]
+          category_id = item["primaryCategory"]["categoryId"]
+          category_name = item["primaryCategory"]["categoryName"]
+          csv << [item_id, item_title, category_id, category_name]
         end
       end
     end
@@ -24,4 +26,5 @@ class Keyword < ApplicationRecord
   def get_items
     rebay.find_items_by_keywords({keywords: text}).response["searchResult"]["item"]
   end
+
 end

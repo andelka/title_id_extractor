@@ -8,7 +8,7 @@ class KeywordsController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.csv { send_data Keyword.to_csv, filename: "keyword_list-#{Date.today}.csv" }
+      format.csv { send_data Keyword.to_csv, filename: "Item_list_#{Date.today}.csv" }
     end
   end
 
@@ -28,7 +28,7 @@ class KeywordsController < ApplicationController
     @keyword = Keyword.new(keyword_params)
     respond_to do |format|
       if @keyword.save
-        format.html { redirect_to @keyword, notice: 'The keyword list was successfully created.' }
+        format.html { redirect_to @keyword, notice: 'The Item list was successfully created.' }
         format.json { render :show, status: :created, location: @keyword }
       else
         format.html { render :new }
@@ -40,7 +40,7 @@ class KeywordsController < ApplicationController
   def update
     respond_to do |format|
       if @keyword.update(keyword_params)
-        format.html { redirect_to @keyword, notice: 'The keyword list was successfully updated.' }
+        format.html { redirect_to @keyword, notice: 'The Item list was successfully updated.' }
         format.json { render :show, status: :ok, location: @keyword }
       else
         format.html { render :edit }
@@ -52,7 +52,7 @@ class KeywordsController < ApplicationController
   def destroy
     @keyword.destroy
     respond_to do |format|
-      format.html { redirect_to keywords_url, notice: 'The keyword list was successfully destroyed.' }
+      format.html { redirect_to keywords_url, notice: 'The Item list was successfully deleted.' }
       format.json { head :no_content }
     end
   end

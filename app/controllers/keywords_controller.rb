@@ -13,7 +13,7 @@ class KeywordsController < ApplicationController
   end
 
   def show
-      @keyword = Keyword.find(params[:id])
+    @keyword = Keyword.find(params[:id])
   end
 
   def new
@@ -26,28 +26,23 @@ class KeywordsController < ApplicationController
 
   def create
     @keyword = Keyword.new(keyword_params)
-
-    if @keyword.save
-      format.html { redirect_to @keyword, notice: 'The keyword list was successfully created.' }
-      format.json { render :show, status: :created, location: @keyword }
-    #  redirect_to @keyword
-    else
-      format.html { render :new }
-      format.json { render json: @keyword.errors, status: :unprocessable_entity }
-      # render 'new'
+    respond_to do |format|
+      if @keyword.save
+        format.html { redirect_to @keyword, notice: 'The keyword list was successfully created.' }
+        format.json { render :show, status: :created, location: @keyword }
+      else
+        format.html { render :new }
+        format.json { render json: @keyword.errors, status: :unprocessable_entity }
+      end
     end
   end
 
   def update
-  #  @keyword = Keyword.find(params[:id])
-
     respond_to do |format|
       if @keyword.update(keyword_params)
-        #redirect_to @keyword
         format.html { redirect_to @keyword, notice: 'The keyword list was successfully updated.' }
         format.json { render :show, status: :ok, location: @keyword }
       else
-        #render 'edit'
         format.html { render :edit }
         format.json { render json: @keyword.errors, status: :unprocessable_entity }
       end
@@ -55,12 +50,10 @@ class KeywordsController < ApplicationController
   end
 
   def destroy
-    #@keyword = Keyword.find(params[:id])
     @keyword.destroy
     respond_to do |format|
       format.html { redirect_to keywords_url, notice: 'The keyword list was successfully destroyed.' }
       format.json { head :no_content }
-      #redirect_to keywords_path
     end
   end
 

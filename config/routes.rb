@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   get 'extractor/index'
 
-  resources :keywords
+  resources :keywords do
+    collection { post :import}
+  end
 
   root 'extractor#index'
 

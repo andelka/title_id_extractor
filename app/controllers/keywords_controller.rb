@@ -1,5 +1,3 @@
-require 'csv'
-
 class KeywordsController < ApplicationController
   before_action :set_keyword, only: [:show, :edit, :update, :destroy]
 
@@ -55,6 +53,11 @@ class KeywordsController < ApplicationController
       format.html { redirect_to keywords_url, notice: 'The Item list was successfully deleted.' }
       format.json { head :no_content }
     end
+  end
+
+  def import
+    Keyword.import(params[:file])
+    redirect_to keywords_path, notice: "Keywords were successfully added."
   end
 
   private

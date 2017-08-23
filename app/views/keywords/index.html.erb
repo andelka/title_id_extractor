@@ -3,6 +3,12 @@
 <button type="button" class="btn btn-default btn-lg"><%= link_to 'New Keyword', new_keyword_path %></button>
 <button type="button" class="btn btn-default btn-lg"><%= link_to "Download as CSV", keywords_path(format: "csv") %></button>
 
+<h3> Import Keywords </h3>
+<%= form_tag import_keywords_path, multipart: true do %>
+  <%= file_field_tag :file %>
+  <%= submit_tag "Upload keywords" %>
+<% end %>
+
 <table class="table table-hover">
   <thead>
     <tr>

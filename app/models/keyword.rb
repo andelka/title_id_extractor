@@ -21,6 +21,12 @@ class Keyword < ApplicationRecord
     end
   end
 
+  def self.import(file)
+    CSV.foreach(file.path, headers: true) do |row|
+      Keyword.create!(row.to_hash)
+    end
+  end
+
   def rebay
     @rebay ||= Rebay::Finding.new
   end

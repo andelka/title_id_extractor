@@ -26,7 +26,7 @@ class KeywordsController < ApplicationController
     @keyword = Keyword.new(keyword_params)
     respond_to do |format|
       if @keyword.save
-        format.html { redirect_to @keyword, notice: 'The Item list was successfully created.' }
+        format.html { redirect_to @keyword, notice: 'The keyword was successfully created.' }
         format.json { render :show, status: :created, location: @keyword }
       else
         format.html { render :new }
@@ -38,7 +38,7 @@ class KeywordsController < ApplicationController
   def update
     respond_to do |format|
       if @keyword.update(keyword_params)
-        format.html { redirect_to @keyword, notice: 'The Item list was successfully updated.' }
+        format.html { redirect_to @keyword, notice: 'The keyword was successfully updated.' }
         format.json { render :show, status: :ok, location: @keyword }
       else
         format.html { render :edit }
@@ -50,7 +50,7 @@ class KeywordsController < ApplicationController
   def destroy
     @keyword.destroy
     respond_to do |format|
-      format.html { redirect_to keywords_url, notice: 'The Item list was successfully deleted.' }
+      format.html { redirect_to keywords_url, notice: 'The keyword was successfully deleted.' }
       format.json { head :no_content }
     end
   end

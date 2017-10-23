@@ -36,16 +36,28 @@ class Keyword < ApplicationRecord
     end
   end
 
-  def rebay
+  def rebay_find
     @rebay ||= Rebay::Finding.new
   end
 
   def get_search_results
-    rebay.find_items_by_keywords({keywords: text}).response["searchResult"]
+    rebay_find.find_items_by_keywords({keywords: text}).response["searchResult"]
   end
 
   def get_result_count
-    rebay.find_items_by_keywords({keywords: text}).response["searchResult"]["@count"].to_i
+    rebay_find.find_items_by_keywords({keywords: text}).response["searchResult"]["@count"].to_i
+  end
+
+  def get_cat_id
+    rebay_find.find_items_by_keywords({keywords: text}).response["searchResult"]["item"]["primaryCategory"]["categoryId"]
+  end
+
+  def rebay_shop
+    @rs ||= Rebay::Shopping.new
+  end
+
+  def get_cat_info
+    rebay_shop.get_category_info({CategoryID: self.get_cat_id}).response["CategoryArray"]["Category"]["CategoryIDPath"]
   end
 
 end

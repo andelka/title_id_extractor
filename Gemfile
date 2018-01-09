@@ -41,6 +41,10 @@ gem 'jbuilder', '~> 2.5'
 gem 'rebay'
 # uploader
 gem 'carrierwave', '~> 1.0'
+# generate excel
+gem 'rubyzip', '= 1.0.0'
+gem 'axlsx', '= 2.0.1'
+gem 'axlsx_rails'
 
 
 group :development, :test do

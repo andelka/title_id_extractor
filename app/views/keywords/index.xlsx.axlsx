@@ -1,0 +1,6 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(name: "Keywords") do |sheet|
+  @keywords.each do |keyword|
+    sheet.add_row [keyword.text, keyword.get_cat_info]
+  end
+end

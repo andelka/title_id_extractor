@@ -6,7 +6,8 @@ class KeywordsController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.csv { send_data Keyword.to_csv, filename: "Item_list_#{Date.today}.csv" }
+      format.xlsx {
+        render xlsx: 'index', filename: "Item_list_#{Date.today}.xlsx" }
     end
   end
 

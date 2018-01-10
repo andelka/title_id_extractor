@@ -40,27 +40,35 @@ class Keyword < ApplicationRecord
     @rf ||= Rebay::Finding.new
   end
 
-  def get_search_results
+  def search_results
     rebay_find.find_items_by_keywords({keywords: text}).response["searchResult"]
   end
 
-  def get_result_count
-    rebay_find.find_items_by_keywords({keywords: text}).response["searchResult"]["@count"].to_i
+  def result_count
+    self.search_results["@count"].to_i
   end
 
-  def get_cat_id
-    if self.get_result_count > 0
-      rebay_find.find_items_by_keywords({keywords: text}).response["searchResult"]["item"]["primaryCategory"]["categoryId"]
-    end
+  def item_id
+      self.search_results["item"]["itemId"]
+  end
+
+  def item_title
+      self.search_results["item"]["title"]
+  end
+
+  def cat_id
+    #if self.result_count > 0
+      self.search_results["item"]["primaryCategory"]["categoryId"]
+    #end
   end
 
   def rebay_shop
     @rs ||= Rebay::Shopping.new
   end
 
-  def get_cat_info
-    if self.get_cat_id
-      rebay_shop.get_category_info({CategoryID: self.get_cat_id}).response["CategoryArray"]["Category"]["CategoryIDPath"]
+  def cat_info
+    if self.cat_id
+      rebay_shop.get_category_info({CategoryID: self.cat_id}).response["CategoryArray"]["Category"]["CategoryIDPath"]
     end
   end
 

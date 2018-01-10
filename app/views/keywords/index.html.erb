@@ -22,8 +22,9 @@
     <% @keywords.each do |keyword| %>
       <tr>
         <td><%= keyword.text %></td>
-        <td><%= keyword.get_result_count %></td>
-        <td><%= keyword.get_cat_info %></td>
+        <td><%= keyword.result_count %></td>
+        <td> keyword.cat_info </td>
+        <td> keyword.item_id </td>
         <td><%= link_to 'Show', keyword_path(keyword) %></td>
         <td><%= link_to 'Edit', edit_keyword_path(keyword) %></td>
         <td><%= link_to 'Delete', keyword_path(keyword),

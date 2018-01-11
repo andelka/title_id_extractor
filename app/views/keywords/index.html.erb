@@ -1,9 +1,9 @@
-<h1> Keyword list </h1>
+<h1> ITT extractor </h1>
 
-<button type="button" class="btn btn-default btn-lg"><%= link_to 'New Keyword', new_keyword_path %></button>
+<button type="button" class="btn btn-default btn-lg"><%= link_to 'Add new keyword', new_keyword_path %></button>
 <button type="button" class="btn btn-default btn-lg"><%= link_to "Download as .xlsx", keywords_path(format: "xlsx") %></button>
 
-<h3> Import Keywords </h3>
+<h3> Import a list of keywords </h3>
 <%= form_tag import_keywords_path, multipart: true do %>
   <%= file_field_tag :file %>
   <%= submit_tag "Upload keywords" %>
@@ -14,8 +14,7 @@
     <tr>
       <th>Text</th>
       <th>Results</th>
-      <th>ID path</th>
-      <th colspan="3"></th>
+      <th><colspan="3"></th>
     </tr>
   </thead>
   <tbody>
@@ -23,9 +22,6 @@
       <tr>
         <td><%= keyword.text %></td>
         <td><%= keyword.result_count %></td>
-        <td> keyword.cat_info </td>
-        <td> keyword.item_id </td>
-        <td><%= link_to 'Show', keyword_path(keyword) %></td>
         <td><%= link_to 'Edit', edit_keyword_path(keyword) %></td>
         <td><%= link_to 'Delete', keyword_path(keyword),
           method: :delete,

@@ -1,17 +1,18 @@
 wb = xlsx_package.workbook
 wb.add_worksheet(name: "Item Titles") do |sheet|
-  sheet.add_row ["item_id", "item_title", "cat_id"]
+  sheet.add_row ["query", "item_id", "item_title", "cat_id"]
   @keywords.each do |keyword|
     if keyword.result_count > 1
       items = keyword.item
       items.each do |item|
+        query = keyword.text
         item_id = item["itemId"]
         item_title = item["title"]
         cat_id = item["primaryCategory"]["categoryId"]
-        sheet.add_row [item_id, item_title, cat_id]
+        sheet.add_row [query, item_id, item_title, cat_id]
       end
     elsif keyword.result_count == 1
-      sheet.add_row [keyword.item_id, keyword.item_title, keyword.cat_id]
+      sheet.add_row [keyword.text, keyword.item_id, keyword.item_title, keyword.cat_id]
     end
   end
 end

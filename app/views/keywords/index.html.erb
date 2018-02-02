@@ -12,21 +12,26 @@
 <table class="table table-hover">
   <thead>
     <tr>
+      <th></th>
       <th>Text</th>
       <th>Results</th>
       <th><colspan="3"></th>
     </tr>
   </thead>
   <tbody>
-    <% @keywords.each do |keyword| %>
-      <tr>
-        <td><%= keyword.text %></td>
-        <td><%= keyword.result_count %></td>
-        <td><%= link_to 'Edit', edit_keyword_path(keyword) %></td>
-        <td><%= link_to 'Delete', keyword_path(keyword),
-          method: :delete,
-          data: { confirm: 'Are you sure?'} %></td>
-      </tr>
+    <%= form_tag :url => { :controller => :keywords, :action => :trash}, :method => :delete do %>
+      <% @keywords.each do |keyword| %>
+        <tr>
+          <td><%= check_box_tag '', keyword.id, false, class: 'delete_multiple_checkbox', name: "keywords[]" %>
+          <td><%= keyword.text %></td>
+          <td><%= keyword.result_count %></td>
+          <td><%= link_to 'Edit', edit_keyword_path(keyword) %></td>
+          <td><%= link_to 'Delete', keyword_path(keyword),
+            method: :delete,
+            data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+      <%= submit_tag "Trash All Checked" %>
     <% end %>
-  </body>
+  </tbody>
 </table>

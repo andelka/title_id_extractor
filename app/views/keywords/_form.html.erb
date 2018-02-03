@@ -12,12 +12,11 @@
     </div>
   <% end %>
 
-  <p>
-    <%= f.label :text %><br>
-    <%= f.text_area :text %>
-  </p>
-
-  <p>
+  <div class="field">
+      <%= f.label :text %><br>
+      <%= f.text_area :text %>
+  </div>
+  <div class="actions">
     <%= f.submit %>
-  </p>
+  </div>
 <% end %>

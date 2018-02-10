@@ -12,7 +12,7 @@ class KeywordsController < ApplicationController
   end
 
   def show
-    #@keyword = Keyword.find(params[:id])
+
   end
 
   def new
@@ -20,7 +20,7 @@ class KeywordsController < ApplicationController
   end
 
   def edit
-    #@keyword = Keyword.find(params[:id])
+    
   end
 
   def create
@@ -56,20 +56,10 @@ class KeywordsController < ApplicationController
     end
   end
 
-  def destroy_multiple
-    @keyword = Keyword.find(params[:keyword_ids])
-
-    respond_to do |format|
-      format.html { redirect_to keywords_path }
-      format.json { head :no_content }
-    end
-  end
-
-
   def import
     Keyword.import(params[:file])
     respond_to do |format|
-      format.html { redirect_to keywords_path, notice: 'Keywords were successfully imported.' }
+      format.html { redirect_to keywords_url, notice: 'Keywords were successfully imported.' }
       format.json { head :no_content }
     end
   end

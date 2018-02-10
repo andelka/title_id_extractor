@@ -11,9 +11,9 @@
 <button type="button" class="btn btn-default btn-lg"><%= link_to "Download as .xlsx", keywords_path(format: "xlsx") %></button>
 
 <h3> Import a list of keywords </h3>
-<%= form_tag import_keywords_path, multipart: true do %>
+<%= form_with model: @keywords, url: import_keywords_path, multipart: true do %>
   <%= file_field_tag :file %>
-  <%= submit_tag "Upload keywords" %>
+  <%= submit_tag "Import keywords" %>
 <% end %>
 
 <table class="table table-hover">
@@ -25,12 +25,12 @@
     </tr>
   </thead>
   <tbody>
-    <% @keywords.each do |keyword| %>
+    <% @keywords.each do |k| %>
       <tr>
-        <td><%= keyword.text %></td>
-        <td><%= keyword.result_count %></td>
-        <td><%= link_to 'Edit', edit_keyword_path(keyword) %></td>
-        <td><%= link_to 'Delete', keyword_path(keyword),
+        <td><%= k.text %></td>
+        <td><%= k.result_count %></td>
+        <td><%= link_to 'Edit', edit_keyword_path(k) %></td>
+        <td><%= link_to 'Delete', keyword_path(k),
           method: :delete,
           data: { confirm: 'Are you sure?' } %></td>
       </tr>

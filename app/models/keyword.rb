@@ -16,27 +16,39 @@ class Keyword < ApplicationRecord
   end
 
   def result_count
-    self.search_results["@count"].to_i
+    search_results["@count"].to_i
   end
 
-  def item
-    self.search_results["item"]
+  def items
+    search_results["item"]
   end
 
   def item_id
-    self.item["itemId"]
+    items["itemId"]
   end
 
   def item_title
-      self.item["title"]
+    items["title"]
   end
 
   def cat_id
-      self.item["primaryCategory"]["categoryId"]
+    items["primaryCategory"]["categoryId"]
   end
 
   def rebay_shop
     @rs ||= Rebay::Shopping.new
+  end
+
+  def cat_results
+    rebay_shop.get_category_info({CategoryID: cat_id}).results
+  end
+
+  def cat_id_path
+    cat_results["CategoryIDPath"]
+  end
+
+  def cat_name_path
+    cat_results["CategoryNamePath"]
   end
 
 end

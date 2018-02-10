@@ -7,7 +7,7 @@ class KeywordsController < ApplicationController
     respond_to do |format|
       format.html
       format.xlsx {
-        render xlsx: 'index', filename: "Item_list_#{Date.today}.xlsx" }
+        render xlsx: 'index', filename: "ITT_#{Time.now.strftime('%Y-%m-%d_%H-%M-%S')}.xlsx" }
     end
   end
 
@@ -20,7 +20,7 @@ class KeywordsController < ApplicationController
   end
 
   def edit
-    
+
   end
 
   def create

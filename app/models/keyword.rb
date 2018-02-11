@@ -1,4 +1,5 @@
 class Keyword < ApplicationRecord
+  has_many :items
   validates :text, presence: true
 
   def self.import(file)

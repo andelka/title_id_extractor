@@ -56,6 +56,15 @@ class KeywordsController < ApplicationController
     end
   end
 
+  def destroy_multiple
+    keywords = Keyword.find(params[:checkbox_ids])
+    keywords.each {|keyword| keyword.destroy}
+    respond_to do |format|
+      format.html { redirect_to keywords_path, notice: 'Keywords were successfully deleted.' }
+      format.json { head :no_content }
+    end
+  end
+
   def import
     Keyword.import(params[:file])
     respond_to do |format|
@@ -71,6 +80,6 @@ class KeywordsController < ApplicationController
     end
 
     def keyword_params
-      params.require(:keyword).permit(:text, :keyword_ids)
+      params.require(:keyword).permit(:text)
     end
 end

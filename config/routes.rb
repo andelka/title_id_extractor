@@ -2,7 +2,11 @@ Rails.application.routes.draw do
   get 'extractor/index'
 
   resources :keywords do
-    collection { post :import}
+    collection { post :import }
+  end
+
+  resources :keywords do
+    collection { post :destroy_multiple}
   end
 
   resources :keywords do

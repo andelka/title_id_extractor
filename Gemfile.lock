@@ -150,7 +150,7 @@ GEM
     rebay (1.2.0)
       json
     ref (2.0.0)
-    rubyzip (1.2.3)
+    rubyzip (1.3.0)
     sass (3.5.1)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
@@ -218,7 +218,7 @@ DEPENDENCIES
   puma (~> 3.7)
   rails (~> 5.1.2)
   rebay
-  rubyzip (~> 1.2.3)
+  rubyzip (~> 1.3.0)
   sass-rails (~> 5.0)
   selenium-webdriver
   sqlite3

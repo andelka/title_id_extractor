@@ -42,7 +42,7 @@ gem 'rebay'
 # uploader
 gem 'carrierwave', '~> 1.0'
 # generate excel
-gem 'rubyzip', '~> 1.2.3'
+gem 'rubyzip', '~> 1.3.0'
 gem 'axlsx', '~> 3.0.0.pre'
 gem 'axlsx_rails'
 

@@ -116,7 +116,7 @@ GEM
     nokogiri (1.10.3-x86-mingw32)
       mini_portile2 (~> 2.4.0)
     public_suffix (2.0.5)
-    puma (3.9.1)
+    puma (3.12.3)
     rack (2.0.3)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -215,7 +215,7 @@ DEPENDENCIES
   coffee-script-source (= 1.8.0)
   jbuilder (~> 2.5)
   jquery-rails
-  puma (~> 3.7)
+  puma (~> 3.12)
   rails (~> 5.1.2)
   rebay
   rubyzip (~> 1.2.3)

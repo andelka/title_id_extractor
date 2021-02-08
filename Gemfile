@@ -40,7 +40,7 @@ gem 'jbuilder', '~> 2.5'
 # eBay API
 gem 'rebay'
 # uploader
-gem 'carrierwave', '~> 1.0'
+gem 'carrierwave', '~> 1.3'
 # generate excel
 gem 'rubyzip', '~> 1.2.3'
 gem 'axlsx', '~> 3.0.0.pre'
